@@ -46,13 +46,13 @@ jobs:
 
       - name: Install Dependencies (macOS)
         if: matrix.config.os == 'macos-latest'
-        run: brew install ccache ninja
+        run: brew install ccache ninja gdal
 
       - name: Install Dependencies (Linux)
         if: matrix.config.os == 'ubuntu-latest'
         run: |
           sudo apt-get update
-          sudo apt-get install -y ccache ninja-build
+          sudo apt-get install -y ccache ninja-build libgdal-dev
 
       - name: Install Dependencies (Windows)
         if: matrix.config.os == 'windows-latest'

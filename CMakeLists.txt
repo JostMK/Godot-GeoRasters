@@ -138,14 +138,20 @@ endif()
 
 set( GODOT_CPP_SYSTEM_HEADERS ON CACHE BOOL "" FORCE )
 
+# Link godot-cpp
 add_subdirectory( extern/godot-cpp )
 
 set_target_properties( godot-cpp
     PROPERTIES
         CXX_VISIBILITY_PRESET hidden    # visibility needs to be the same as the main library
 )
+target_link_libraries( ${PROJECT_NAME} PRIVATE godot-cpp)
 
-target_link_libraries( ${PROJECT_NAME}
-    PRIVATE
-        godot-cpp
-)
+
+# Link GDAL
+find_package(GDAL CONFIG REQUIRED)
+if(GDAL_VERSION VERSION_LESS "3.10")
+    message(FATAL_ERROR "Required GDAL version 3.10 or greater! (found ${GDAL_VERSION})")
+endif()
+
+target_link_libraries( ${PROJECT_NAME} PRIVATE GDAL::GDAL)
