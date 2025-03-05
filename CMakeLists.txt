@@ -150,8 +150,4 @@ target_link_libraries( ${PROJECT_NAME} PRIVATE godot-cpp)
 
 # Link GDAL
 find_package(GDAL CONFIG REQUIRED)
-if(GDAL_VERSION VERSION_LESS "3.10")
-    message(FATAL_ERROR "Required GDAL version 3.10 or greater! (found ${GDAL_VERSION})")
-endif()
-
 target_link_libraries( ${PROJECT_NAME} PRIVATE GDAL::GDAL)
