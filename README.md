@@ -14,6 +14,14 @@ The open source [GDAL](https://github.com/OSGeo/gdal) library is used for import
 
 - Todo
 
+## Build It Yourself
+
+To build the project yourself, make sure to have GDAL available for linking:
+
+- Linux: Use available [packages](https://gdal.org/en/stable/download.html#linux)
+- Mac OS: Use [Homebrew](https://gdal.org/en/stable/download.html#mac-os)
+- Windows: Download binaries from [GISInternals](https://www.gisinternals.com/release.php) and unpack them into `.\third_party\gdal`
+
 ## How To Contribute
 
 These are some of the things you can do to contribute to the project:

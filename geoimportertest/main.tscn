@@ -8,8 +8,10 @@ script = ExtResource("1_toxyk")
 
 [node name="GDExample" type="GDExample" parent="."]
 speed = 10.0
-position = Vector2(8.95743, 17.6027)
+position = Vector2(19.998, 13.9642)
 texture = ExtResource("1_ukxkm")
 centered = false
+
+[node name="GeoRaster" type="GeoRaster" parent="."]
 
 [connection signal="position_changed" from="GDExample" to="." method="_on_gd_example_position_changed"]

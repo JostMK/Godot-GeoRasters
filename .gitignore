@@ -3,6 +3,9 @@ CMakeLists.txt.user
 # CMake build folders
 /cmake-build-*/
 
+# Precompiled binaries
+third_party/
+
 # Clion IDE settings
 .idea/
 .vscode/

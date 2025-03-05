@@ -149,8 +149,18 @@ target_link_libraries( ${PROJECT_NAME} PRIVATE godot-cpp)
 
 
 # Link GDAL
-find_package(GDAL CONFIG REQUIRED)
-if (${GDAL_VERSION})
-    message( STATUS "Linking against GDAL ${GDAL_VERSION}" )
+if (MSVC)
+    add_library(GDAL::GDAL STATIC IMPORTED)
+    set_target_properties(GDAL::GDAL PROPERTIES
+            IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/third_party/gdal/lib/gdal_i.lib"
+            INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_SOURCE_DIR}/third_party/gdal/include"
+    )
+    message( STATUS "Detecting MSVC: Linking against GDAL manually" )
+else ()
+    find_package(GDAL CONFIG REQUIRED)
+    if (${GDAL_VERSION})
+        message( STATUS "Linking against GDAL ${GDAL_VERSION}" )
+    endif ()
 endif ()
+
 target_link_libraries( ${PROJECT_NAME} PRIVATE GDAL::GDAL)
