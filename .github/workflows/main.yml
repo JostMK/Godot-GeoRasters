@@ -63,6 +63,12 @@ jobs:
         if: matrix.config.os == 'windows-latest'
         uses: ilammy/msvc-dev-cmd@v1.13.0
 
+      - name: Setup GDAL (Windows)
+        if: matrix.config.os == 'windows-latest'
+        run: >
+          curl -o gdal.zip https://download.gisinternals.com/sdk/downloads/release-1928-x64-gdal-3-10-0-mapserver-8-2-2.zip
+          && powershell -command "Expand-Archive -Force 'gdal.zip' 'third_party/gdal'"
+
       - name: ccache
         uses: hendrikmuhs/ccache-action@v1.2.17
         with:
