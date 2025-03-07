@@ -169,11 +169,12 @@ endif()
 set( BUILD_APPS OFF CACHE BOOL "GDAL_BUILD_APPS" FORCE )
 set( BUILD_SHARED_LIBS OFF CACHE BOOL "GDAL_BUILD_SHARED_LIBS" FORCE )
 set( BUILD_TESTING OFF CACHE BOOL "GDAL_BUILD_TESTING" FORCE )
+set( GDAL_HIDE_INTERNAL_SYMBOLS ON CACHE BOOL "GDAL_HIDE_INTERNAL_SYMBOLS" FORCE )
 
 message(STATUS "Adding GDAL as submodule")
 add_subdirectory( extern/gdal )
 
-set_target_properties( GDAL::GDAL
+set_target_properties( GDAL
         PROPERTIES
         CXX_VISIBILITY_PRESET hidden    # visibility needs to be the same as the main library
 )
