@@ -1,4 +1,5 @@
 #include "gdexample.h"
+#include "GeoRaster.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -14,6 +15,7 @@ void initialize_example_module(ModuleInitializationLevel p_level)
     }
 
     GDREGISTER_CLASS(GDExample);
+    GDREGISTER_CLASS(georasters::GeoRaster);
 }
 
 void uninitialize_example_module(ModuleInitializationLevel p_level)

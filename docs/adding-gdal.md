@@ -24,3 +24,11 @@ git config --global core.longpaths true
 
 - Proj: see https://proj.org/en/stable/install.html#installation
 - curl (optional): see https://curl.se/download.html
+
+### Windows
+
+Make sure to add the `lib` and `include` folders to the cmake command.
+When using the OSGeo4W installer add: 
+- Lib: `-DPROJ_LIBRARY="<path_to_OSGeo4W>/lib/proj.lib`
+- Includes: `-DPROJ_INCLUDE_DIR="<path_to_OSGeo4W>/include"`
+
