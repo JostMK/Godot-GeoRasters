@@ -19,3 +19,8 @@ Tell git to use long paths ([see](https://stackoverflow.com/questions/22575662/f
 ```shell
 git config --global core.longpaths true
 ```
+
+## Adding GDAL build dependencies
+
+- Proj: see https://proj.org/en/stable/install.html#installation
+- curl (optional): see https://curl.se/download.html

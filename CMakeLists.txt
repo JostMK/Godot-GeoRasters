@@ -127,7 +127,7 @@ include( ccache )
 # Adds a custom target to format all the code at once
 include( ClangFormat )
 
-# godot-cpp
+# submodule godot-cpp
 # From here: https://github.com/godotengine/godot-cpp
 if ( NOT EXISTS "${CMAKE_CURRENT_LIST_DIR}/extern/godot-cpp/Makefile" )
     message(
@@ -148,4 +148,28 @@ set_target_properties( godot-cpp
 target_link_libraries( ${PROJECT_NAME}
     PRIVATE
         godot-cpp
+)
+
+# submodule gdal
+# From here: https://github.com/OSGeo/gdal
+if ( NOT EXISTS "${CMAKE_CURRENT_LIST_DIR}/extern/gdal/VERSION" )
+    message(
+            FATAL_ERROR
+            "[${PROJECT_NAME}] The gdal submodule was not downloaded. Please update submodules: git submodule update --init --recursive."
+    )
+endif()
+
+add_subdirectory( extern/gdal )
+
+set_target_properties( gdal
+        PROPERTIES
+        CXX_VISIBILITY_PRESET hidden    # visibility needs to be the same as the main library
+        BUILD_APPS=OFF
+        BUILD_SHARED_LIBS=OFF
+        BUILD_TESTING=OFF
+)
+
+target_link_libraries( ${PROJECT_NAME}
+        PRIVATE
+        gdal
 )
