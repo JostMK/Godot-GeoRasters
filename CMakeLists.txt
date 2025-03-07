@@ -164,9 +164,9 @@ add_subdirectory( extern/gdal )
 set_target_properties( gdal
         PROPERTIES
         CXX_VISIBILITY_PRESET hidden    # visibility needs to be the same as the main library
-        BUILD_APPS=OFF
-        BUILD_SHARED_LIBS=OFF
-        BUILD_TESTING=OFF
+        BUILD_APPS OFF
+        BUILD_SHARED_LIBS OFF
+        BUILD_TESTING OFF
 )
 
 target_link_libraries( ${PROJECT_NAME}
