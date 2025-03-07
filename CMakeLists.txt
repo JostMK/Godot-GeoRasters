@@ -5,6 +5,12 @@ message( STATUS "Using CMake ${CMAKE_VERSION}" )
 # See: https://cmake.org/cmake/help/latest/variable/CMAKE_MSVC_DEBUG_INFORMATION_FORMAT.html
 cmake_policy(SET CMP0141 NEW)
 
+if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.31")
+    # Removes unnecessary path normalization warning
+    # See: https://cmake.org/cmake/help/latest/policy/CMP0177.html
+    cmake_policy(SET CMP0177 OLD)
+endif ()
+
 set( FULL_PROJECT_NAME "GodotGeoRasters" )
 set( SHORT_PROJECT_NAME "GeoRasters" )
 set( PROJECT_GODOT_NAME "geo_rasters")
@@ -136,8 +142,9 @@ if ( NOT EXISTS "${CMAKE_CURRENT_LIST_DIR}/extern/godot-cpp/Makefile" )
     )
 endif()
 
-set( GODOT_CPP_SYSTEM_HEADERS ON CACHE BOOL "" FORCE )
+set( GODOT_CPP_SYSTEM_HEADERS ON CACHE BOOL "GODOT_CPP_SYSTEM_HEADERS" FORCE )
 
+message(STATUS "Adding godot-cpp as submodule")
 add_subdirectory( extern/godot-cpp )
 
 set_target_properties( godot-cpp
@@ -159,17 +166,19 @@ if ( NOT EXISTS "${CMAKE_CURRENT_LIST_DIR}/extern/gdal/VERSION" )
     )
 endif()
 
+set( BUILD_APPS OFF CACHE BOOL "GDAL_BUILD_APPS" FORCE )
+set( BUILD_SHARED_LIBS OFF CACHE BOOL "GDAL_BUILD_SHARED_LIBS" FORCE )
+set( BUILD_TESTING OFF CACHE BOOL "GDAL_BUILD_TESTING" FORCE )
+
+message(STATUS "Adding GDAL as submodule")
 add_subdirectory( extern/gdal )
 
-set_target_properties( gdal
+set_target_properties( GDAL::GDAL
         PROPERTIES
         CXX_VISIBILITY_PRESET hidden    # visibility needs to be the same as the main library
-        BUILD_APPS OFF
-        BUILD_SHARED_LIBS OFF
-        BUILD_TESTING OFF
 )
 
 target_link_libraries( ${PROJECT_NAME}
         PRIVATE
-        gdal
+        GDAL::GDAL
 )
