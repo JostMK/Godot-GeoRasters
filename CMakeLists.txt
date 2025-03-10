@@ -149,3 +149,28 @@ target_link_libraries( ${PROJECT_NAME}
     PRIVATE
         godot-cpp
 )
+
+# TinyTIFF
+# From here: https://github.com/jkriege2/TinyTIFF
+if ( NOT EXISTS "${CMAKE_CURRENT_LIST_DIR}/extern/tinytiff/LICENSE" )
+    message(
+            FATAL_ERROR
+            "[${PROJECT_NAME}] The TinyTIFF submodule was not downloaded. Please update submodules: git submodule update --init --recursive."
+    )
+endif()
+
+set( BUILD_SHARED_LIBS OFF CACHE BOOL "TinyTIFF_BUILD_SHARED_LIBS" FORCE )
+set( TinyTIFF_BUILD_EXAMPLES OFF CACHE BOOL "TinyTIFF_BUILD_EXAMPLES" FORCE )
+set( TinyTIFF_BUILD_TESTS OFF CACHE BOOL "TinyTIFF_BUILD_TESTS" FORCE )
+
+add_subdirectory( extern/tinytiff )
+
+set_target_properties( TinyTIFFXX
+        PROPERTIES
+        CXX_VISIBILITY_PRESET hidden    # visibility needs to be the same as the main library
+)
+
+target_link_libraries( ${PROJECT_NAME}
+        PRIVATE
+        TinyTIFFXX
+)

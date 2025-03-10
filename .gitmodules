@@ -2,3 +2,6 @@
 	path = extern/godot-cpp
 	url = https://github.com/godotengine/godot-cpp.git
 	branch = 4.3
+[submodule "extern/tinytiff"]
+	path = extern/tinytiff
+	url = https://github.com/jkriege2/TinyTIFF
