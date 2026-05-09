@@ -1,3 +1,4 @@
+#include "GeoTiff.h"
 #include "gdexample.h"
 
 #include <gdextension_interface.h>
@@ -12,6 +13,8 @@ void initialize_example_module(ModuleInitializationLevel p_level)
     {
         return;
     }
+
+    auto geo_tiff = georasters::GeoTiff::open(R"(./rasters/DigitalTerrainModel-0.5m.tif)");
 
     GDREGISTER_CLASS(GDExample);
 }

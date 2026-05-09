@@ -165,6 +165,11 @@ set( TinyTIFF_BUILD_TESTS OFF CACHE BOOL "TinyTIFF_BUILD_TESTS" FORCE )
 
 add_subdirectory( extern/tinytiff )
 
+set_target_properties( TinyTIFF
+        PROPERTIES
+        CXX_VISIBILITY_PRESET hidden    # visibility needs to be the same as the main library
+)
+
 set_target_properties( TinyTIFFXX
         PROPERTIES
         CXX_VISIBILITY_PRESET hidden    # visibility needs to be the same as the main library
@@ -172,5 +177,6 @@ set_target_properties( TinyTIFFXX
 
 target_link_libraries( ${PROJECT_NAME}
         PRIVATE
+        TinyTIFF
         TinyTIFFXX
 )

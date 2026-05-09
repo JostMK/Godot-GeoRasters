@@ -2,6 +2,8 @@ target_sources( ${PROJECT_NAME}
     PRIVATE
         gdexample.h
         gdexample.cpp
+        GeoTiff.h
+        GeoTiff.cpp
         register_types.cpp
 )
 
